@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 50%, #90e0ef 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+.dashboard-container {
+    width: 90%;
+    max-width: 1200px;
+    padding: 2rem;
+    text-align: center;
+}
+
+.quotes-container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    min-height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quotes-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.quote {
+    font-size: 1.8rem;
+    font-weight: 500;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    padding: 0 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.quote.active {
+    opacity: 1;
+}
+
+.portfolio-title {
+    font-size: 5rem;
+    font-weight: 800;
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.portfolio-title a {
+  text-decoration: none;  /* underline hatayega */
+  color: inherit;         /* span ke hisaab se color lega */
+}
+
+
+.letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.5s ease;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 10px;
+    position: relative;
+}
+
+.letter:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-10px) scale(1.1);
+}
+
+.letter:hover::after {
+    content: attr(data-text);
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(19, 180, 212, 0.8);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.space {
+    width: 1rem;
+}
+
+.dashboard-footer {
+    margin-top: 3rem;
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.social-icons a:hover {
+    transform: translateY(-5px) scale(1.2);
+}
+
+@media (max-width: 768px) {
+    .portfolio-title {
+        font-size: 3.5rem;
+    }
+    
+    .quote {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-title {
+        font-size: 2.8rem;
+    }
+    
+    .quote {
+        font-size: 1.2rem;
+    }
+    
+    .quotes-container {
+        min-height: 120px;
+        padding: 1.5rem;
+    }
+}
