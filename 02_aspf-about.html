@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Ankit Raj</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-blue: #03045E;
+            --navy-blue: #023E8A;
+            --primary-blue: #0077B6;
+            --light-navy: #0096C7;
+            --sky-blue: #00B4D8;
+            --light-blue: #48CAE4;
+            --pale-blue: #90E0EF;
+            --very-pale-blue: #ADE8F4;
+            --lightest-blue: #CAF0F8;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background-color: var(--navy-blue);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo a {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .circle-nav {
+            display: flex;
+            align-items: center;
+            margin-left: 30px;
+        }
+
+        .nav-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-blue);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: 700;
+            margin: 0 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-circle:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: var(--sky-blue);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-circle::after {
+            content: attr(data-text);
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .nav-circle:hover::after {
+            opacity: 1;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 2rem;
+        }
+
+        .back-to-dashboard {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-left: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-to-dashboard:hover {
+            background: var(--sky-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: var(--white);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        .progress-container {
+            position: fixed;
+            top: 70px;
+            width: 100%;
+            height: 5px;
+            background: transparent;
+            z-index: 999;
+        }
+
+        .progress-bar {
+            height: 5px;
+            background: linear-gradient(to right, var(--sky-blue), var(--light-blue));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            background: linear-gradient(135deg, var(--white) 0%, var(--very-pale-blue) 100%);
+            position: relative;
+            padding-top: 70px;
+            overflow: hidden;
+        }
+
+        .hero-circle {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 3s infinite ease-in-out;
+            box-shadow: 0 10px 30px rgba(0, 119, 182, 0.3);
+            cursor: pointer;
+            transition: transform 0.5s ease;
+            z-index: 2;
+        }
+
+        .hero-circle:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        .hero-circle::after {
+            content: '';
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: ripple 4s infinite ease-in-out;
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
+
+        .circle-text {
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: orbit 10s linear infinite;
+        }
+
+        .particle:nth-child(1) {
+            width: 10px;
+            height: 10px;
+            top: 20px;
+            left: 50%;
+            animation-duration: 15s;
+        }
+
+        .particle:nth-child(2) {
+            width: 8px;
+            height: 8px;
+            top: 70px;
+            left: 30%;
+            animation-duration: 12s;
+        }
+
+        .particle:nth-child(3) {
+            width: 6px;
+            height: 6px;
+            top: 40px;
+            right: 20%;
+            animation-duration: 18s;
+        }
+
+        .particle:nth-child(4) {
+            width: 12px;
+            height: 12px;
+            bottom: 50px;
+            left: 20%;
+            animation-duration: 14s;
+        }
+
+        .particle:nth-child(5) {
+            width: 7px;
+            height: 7px;
+            bottom: 30px;
+            right: 30%;
+            animation-duration: 16s;
+        }
+
+        .particle:nth-child(6) {
+            width: 9px;
+            height: 9px;
+            bottom: 80px;
+            right: 10%;
+            animation-duration: 20s;
+        }
+
+        @keyframes orbit {
+            from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+        }
+
+        .quote-bubble {
+            position: absolute;
+            bottom: 100px;
+            right: 50px;
+            background: var(--white);
+            padding: 15px 20px;
+            border-radius: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: float 6s infinite ease-in-out;
+            z-index: 2;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .quote-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 30px;
+            border-width: 10px 10px 0;
+            border-style: solid;
+            border-color: var(--white) transparent transparent;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.7;
+            animation: floatElement 15s infinite ease-in-out;
+        }
+
+        .floating-element:nth-child(1) {
+            top: 20%;
+            left: 10%;
+            font-size: 2rem;
+            color: var(--primary-blue);
+            animation-delay: 0s;
+            animation-duration: 20s;
+        }
+
+        .floating-element:nth-child(2) {
+            top: 60%;
+            right: 15%;
+            font-size: 1.5rem;
+            color: var(--sky-blue);
+            animation-delay: 2s;
+            animation-duration: 18s;
+        }
+
+        .floating-element:nth-child(3) {
+            bottom: 30%;
+            left: 20%;
+            font-size: 2.5rem;
+            color: var(--light-blue);
+            animation-delay: 4s;
+            animation-duration: 22s;
+        }
+
+        @keyframes floatElement {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+
+        .motivation-bubbles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .motivation-bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 10px 15px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: floatAround 20s infinite linear;
+            opacity: 0.9;
+            max-width: 150px;
+            text-align: center;
+        }
+
+        .motivation-bubble:nth-child(1) {
+            top: 20%;
+            left: 5%;
+            animation-duration: 25s;
+            animation-delay: 0s;
+            background: var(--lightest-blue);
+        }
+
+        .motivation-bubble:nth-child(2) {
+            top: 65%;
+            right: 10%;
+            animation-duration: 30s;
+            animation-delay: 5s;
+            background: var(--pale-blue);
+        }
+
+        .motivation-bubble:nth-child(3) {
+            bottom: 25%;
+            left: 15%;
+            animation-duration: 35s;
+            animation-delay: 10s;
+            background: var(--very-pale-blue);
+        }
+
+        .motivation-bubble:nth-child(4) {
+            top: 40%;
+            right: 5%;
+            animation-duration: 28s;
+            animation-delay: 7s;
+            background: var(--lightest-blue);
+        }
+
+        @keyframes floatAround {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -30px) rotate(5deg); }
+            50% { transform: translate(-15px, 20px) rotate(-5deg); }
+            75% { transform: translate(10px, -15px) rotate(3deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 20px;
+        }
+
+        .detail-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .detail-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 119, 182, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            color: var(--primary-blue);
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .card-content h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .card-content p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .extra-info {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .detail-card.expanded .extra-info {
+            max-height: 200px;
+        }
+
+        .skills-section {
+            background: linear-gradient(135deg, var(--very-pale-blue) 0%, var(--lightest-blue) 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            color: var(--navy-blue);
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--sky-blue);
+            border-radius: 2px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            width: 250px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .skill-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .skill-icon {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .skill-item h3 {
+            color: var(--navy-blue);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .skill-item p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .footer {
+            background-color: var(--navy-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: var(--navy-blue);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .hero-circle {
+                width: 200px;
+                height: 200px;
+                font-size: 1.5rem;
+            }
+
+            .detail-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .card-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .skills-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .skill-item {
+                width: 100%;
+                max-width: 300px;
+            }
+            
+            .quote-bubble {
+                bottom: 50px;
+                right: 20px;
+                left: 20px;
+                text-align: center;
+            }
+            
+            .quote-bubble::after {
+                right: 50%;
+                transform: translateX(50%);
+            }
+
+            .back-to-dashboard {
+                margin-left: 10px;
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .circle-nav {
+                display: none;
+            }
+
+            .motivation-bubble {
+                font-size: 0.8rem;
+                max-width: 120px;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>                                                                           #03045E
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="dashboard.html">Ankit Raj</a>
+                <div class="circle-nav">
+                    <div class="nav-circle" data-text="About" onclick="navigateTo('about')">A</div>
+                    <div class="nav-circle" data-text="Skills" onclick="navigateTo('skills')">S</div>
+                    <div class="nav-circle" data-text="Projects" onclick="navigateTo('projects')">P</div>
+                    <div class="nav-circle" data-text="Objectives" onclick="navigateTo('Objectives')">O</div>
+                    <div class="nav-circle" data-text="Resume" onclick="navigateTo('resume')">R</div>
+                    <div class="nav-circle" data-text="Testimonials" onclick="navigateTo('testimonials')">T</div>
+                    <div class="nav-circle" data-text="Future Goals" onclick="navigateTo('future goals')">F</div>
+                    <div class="nav-circle" data-text="Open Source" onclick="navigateTo('open source')">O</div>
+                    <div class="nav-circle" data-text="Learning" onclick="navigateTo('learning')">L</div>
+                    <div class="nav-circle" data-text="Interests" onclick="navigateTo('interests')">I</div>
+                    <div class="nav-circle" data-text="Online Contact" onclick="navigateTo('online contact')">O</div>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="dashboard.html" class="back-to-dashboard">Back to Dashboard</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <div class="progress-container">
+        <div class="progress-bar" id="myBar"></div>
+    </div>
+
+    <section class="hero">
+        <div class="floating-elements">
+            <div class="floating-element"><i class="fas fa-code"></i></div>
+            <div class="floating-element"><i class="fas fa-laptop"></i></div>
+            <div class="floating-element"><i class="fas fa-lightbulb"></i></div>
+        </div>
+        <div class="motivation-bubbles">
+            <div class="motivation-bubble">Dream big, work hard</div>
+            <div class="motivation-bubble">Code is poetry</div>
+            <div class="motivation-bubble">Learn continuously</div>
+            <div class="motivation-bubble">Create with passion</div>
+        </div>
+        <div class="hero-circle" id="heroCircle">
+            <span class="circle-text">About Me</span>
+            <div class="particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+        <div class="quote-bubble">
+            <p>Passionate about coding & science!</p>
+        </div>
+    </section>
+
+    <section class="about-content" id="aboutContent">
+        <div class="detail-card">
+            <div class="card-icon">
+                <i class="fas fa-user-graduate"></i>
+            </div>
+            <div class="card-content">
+                <h3>Background & Education</h3>
+                <p>I'm a Computer Science Engineering student at GCE Gaya with a curious mind and passion for technology. My educational journey began at Adarsh Vikash Vidyalaya Patna for my 10th standard (CBSE), and I completed my 12th standard at LP Shahi College Patna.</p>
+                <div class="extra-info">
+                    <p><strong>My Philosophy:</strong> I believe conditions determine actions - the kind of condition will determine the kind of needed & necessary action you take.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="card-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <div class="card-content">
+                <h3>Knowledge & Expertise</h3>
+                <p>I have strong knowledge of Linux systems and have created detailed PDF documentation for various coding techniques. My analytical skills help me solve complex problems efficiently.</p>
+                <div class="extra-info">
+                    <p><strong>Learning Approach:</strong> I focus on understanding fundamentals deeply rather than just surface-level knowledge.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="card-icon">
+                <i class="fas fa-laptop-code"></i>
+            </div>
+            <div class="card-content">
+                <h3>Technical Journey</h3>
+                <p>My technical journey began with curiosity about how computers work, which evolved into a passion for programming and problem-solving. I enjoy creating efficient solutions to real-world problems.</p>
+                <div class="extra-info">
+                    <p><strong>Current Focus:</strong> Enhancing my skills in full-stack development and exploring new technologies.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="detail-card">
+            <div class="card-icon">
+                <i class="fas fa-rocket"></i>
+            </div>
+            <div class="card-content">
+                <h3>Future Vision</h3>
+                <p>I aim to contribute to innovative projects that make a positive impact. My goal is to continuously grow as a developer while maintaining a balance between technical skills and creative thinking.</p>
+                <div class="extra-info">
+                    <p><strong>Long-term Goal:</strong> To work on projects that solve meaningful problems and help others.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="skills-section">
+        <h2 class="section-title">Key Strengths</h2>
+        <div class="skills-container">
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3>Analytical Thinking</h3>
+                <p>Strong problem-solving abilities with a logical approach to challenges</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Creativity</h3>
+                <p>Ability to think outside the box and develop innovative solutions</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Quick Learning</h3>
+                <p>Fast adaptation to new technologies and concepts</p>
+            </div>
+            <div class="skill-item">
+                <div class="skill-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Coding Skills</h3>
+                <p>Proficiency in multiple programming languages and frameworks</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2023 Ankit Raj. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Navigation toggle
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        // Scroll progress bar
+        window.onscroll = function() { updateProgressBar() };
+
+        function updateProgressBar() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("myBar").style.width = scrolled + "%";
+        }
+
+        // Animate elements on scroll
+        function checkVisibility() {
+            const cards = document.querySelectorAll('.detail-card');
+            const skills = document.querySelectorAll('.skill-item');
+            
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                const cardBottom = card.getBoundingClientRect().bottom;
+                
+                if (cardTop < window.innerHeight - 100 && cardBottom > 0) {
+                    card.classList.add('visible');
+                }
+            });
+            
+            skills.forEach(skill => {
+                const skillTop = skill.getBoundingClientRect().top;
+                const skillBottom = skill.getBoundingClientRect().bottom;
+                
+                if (skillTop < window.innerHeight - 100 && skillBottom > 0) {
+                    skill.classList.add('visible');
+                }
+            });
+        }
+
+        // Expand cards on click
+        document.querySelectorAll('.detail-card').forEach(card => {
+            card.addEventListener('click', () => {
+                card.classList.toggle('expanded');
+            });
+        });
+
+        // Hero circle click to scroll to content
+        document.getElementById('heroCircle').addEventListener('click', () => {
+            document.getElementById('aboutContent').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+
+        // Initialize animations
+        window.addEventListener('load', () => {
+            checkVisibility();
+        });
+
+        window.addEventListener('scroll', () => {
+            checkVisibility();
+        });
+
+        // Particle animation for hero circle
+        const particles = document.querySelectorAll('.particle');
+        particles.forEach(particle => {
+            const randomDelay = Math.random() * 5;
+            particle.style.animationDelay = `${randomDelay}s`;
+        });
+
+        // Function to navigate to different pages
+        function navigateTo(page) {
+            // For demo purposes, just show an alert
+            // In a real implementation, this would navigate to the actual page
+            const pageNames = {
+                'about': 'About Page',
+                'skills': 'Skills Page',
+                'projects': 'Projects Page'
+            };
+            
+            alert(`Navigating to ${pageNames[page]}`);
+            // window.location.href = `${page}.html`; // Uncomment for actual implementation
+        }
+    </script>
+</body>
+</html>
